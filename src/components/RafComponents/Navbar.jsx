@@ -1,8 +1,28 @@
-import React from "react";
-import { FaChevronRight } from "react-icons/fa";
+import React, { useContext } from "react";
+import { FaChevronRight, FaUser } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import { IoLogInOutline } from "react-icons/io5";
+import { CiLogout } from "react-icons/ci";
+import logoImg from "../../assets/logo.jpg";
 
 const Navbar = () => {
+  const {user, signOutUser} = useContext(AuthContext)
+
+  const handelSignOut = () => {
+    signOutUser()
+      .then(() => {
+        console.log("Sign out successfully");
+      })
+      .catch((error) => {
+        console.log("Error", error.message);
+      });
+  };
+
+
+
+
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -34,14 +54,19 @@ const Navbar = () => {
               <NavLink to="/">All Reviews</NavLink>
             </li>
             <li>
-              <NavLink to="/">Add Review</NavLink>
+              <NavLink to="/addreview">Add Review</NavLink>
             </li>
             <li>
-              <NavLink to="/">Game WatchList</NavLink>
+              <NavLink to="/myreviews">My Review</NavLink>
+            </li>
+            <li>
+              <NavLink to="/watchlist">Game WatchList</NavLink>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">LOGO</a>
+        <Link to='/' className="text-xl  bg-gradient-to-r from-violet-500 to-fuchsia-500">
+          <img className="w-56" src={logoImg} alt="" />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-5">
@@ -52,18 +77,47 @@ const Navbar = () => {
             <NavLink to="/">All Reviews</NavLink>
           </li>
           <li>
-            <NavLink to="/">Add Review</NavLink>
+            <NavLink to="/addreview">Add Review</NavLink>
           </li>
           <li>
-            <NavLink to="/">Game WatchList</NavLink>
+            <NavLink to="/myreviews">My Review</NavLink>
+          </li>
+          <li>
+            <NavLink to="/watchlist">Game WatchList</NavLink>
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <NavLink to='/login' className="btn">
-          <FaChevronRight></FaChevronRight>Log in
-        </NavLink>
-      </div>
+      <div className="navbar-end gap-3">
+          <div>
+            {user && user?.email ? (
+              <div className="flex justify-center items-center gap-3">
+                <img
+                  className="w-10 rounded-full h-10"
+                  src={user?.photoURL}
+                  alt=""
+                />
+                <p className="font-bold">{user.displayName}</p>
+              </div>
+            ) : (
+              <>
+                <FaUser className="text-black" size={30}></FaUser>
+              </>
+            )}
+          </div>
+          {user ? (
+            <>
+              <a onClick={handelSignOut} className="btn text-lg bg-gradient-to-r from-indigo-700 to-purple-600 text-white">
+              <CiLogout ></CiLogout> Sign Out
+              </a>
+            </>
+          ) : (
+            <div>
+              <Link className="btn text-lg bg-gradient-to-r from-indigo-700 to-purple-600 text-white" to="/login">
+              <IoLogInOutline></IoLogInOutline> Login
+              </Link>
+            </div>
+          )}
+        </div>
     </div>
   );
 };
