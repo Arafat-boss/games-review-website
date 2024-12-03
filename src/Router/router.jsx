@@ -12,28 +12,54 @@ import WatchList from "../components/Pages/WatchList";
 const router = createBrowserRouter([
     {
         path:'/',
-        element:<MainLayout></MainLayout>
+        element:<MainLayout></MainLayout>,
+        children:[
+            {
+                path:'/',
+                element:<h2>hi</h2>
+            },
+            {
+                path:'/addreview',
+                element:<PrivateAddReview><AddReview></AddReview></PrivateAddReview>
+            },
+            {
+                path:'/myreviews',
+                element:<PrivateMyReview><MyReviews></MyReviews></PrivateMyReview>
+            },
+            {
+                path:'/watchlist',
+                element:<PrivateWatchlist><WatchList></WatchList></PrivateWatchlist>
+            },
+            {
+                path:'/login',
+                element: <Login></Login>
+            },
+            {
+                path:'/register',
+                element:<Register></Register>
+            },
+        ]
     },
-    {
-        path:'/login',
-        element: <Login></Login>
-    },
-    {
-        path:'/register',
-        element:<Register></Register>
-    },
-    {
-        path:'/addreview',
-        element:<PrivateAddReview><AddReview></AddReview></PrivateAddReview>
-    },
-    {
-        path:'/myreviews',
-        element:<PrivateMyReview><MyReviews></MyReviews></PrivateMyReview>
-    },
-    {
-        path:'/watchlist',
-        element:<PrivateWatchlist><WatchList></WatchList></PrivateWatchlist>
-    }
+    // {
+    //     path:'/login',
+    //     element: <Login></Login>
+    // },
+    // {
+    //     path:'/register',
+    //     element:<Register></Register>
+    // },
+    // {
+    //     path:'/addreview',
+    //     element:<PrivateAddReview><AddReview></AddReview></PrivateAddReview>
+    // },
+    // {
+    //     path:'/myreviews',
+    //     element:<PrivateMyReview><MyReviews></MyReviews></PrivateMyReview>
+    // },
+    // {
+    //     path:'/watchlist',
+    //     element:<PrivateWatchlist><WatchList></WatchList></PrivateWatchlist>
+    // }
 
   ]);
 

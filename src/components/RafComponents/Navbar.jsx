@@ -24,8 +24,8 @@ const Navbar = () => {
 
 
   return (
-    <div className="navbar bg-base-100">
-      <div className="navbar-start">
+    <div className="navbar bg-gradient-to-r from-indigo-200 to-purple-100 px-10">
+      <div className="navbar-start ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -100,7 +100,7 @@ const Navbar = () => {
               </div>
             ) : (
               <>
-                <FaUser className="text-black" size={30}></FaUser>
+               
               </>
             )}
           </div>
