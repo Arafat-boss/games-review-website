@@ -1,7 +1,9 @@
+import Navbar from "../RafComponents/Navbar";
+
 const MainLayout = () => {
     return (
         <div>
-            <h3>This is main layout</h3>
+           <Navbar></Navbar>
         </div>
     );
 };
