@@ -73,6 +73,7 @@ useEffect(()=>{
 
   const userInfo = {
     user,
+    loading,
     setUser,
     registerUser,
     loginUser,
