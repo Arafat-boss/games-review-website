@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaStar } from "react-icons/fa";
@@ -9,10 +9,17 @@ const MyReviews = () => {
   const myUser = useLoaderData();
   const findMyUsers = [...myUser].filter((item) => item.email == user.email);
   console.log(findMyUsers);
+  const [deleteUser, setDeleteUser] = useState(findMyUsers)
+  console.log(deleteUser);
   return (
     <div>
       {
-        findMyUsers.map(findUser => <MyUserReview findUser={findUser}></MyUserReview>)
+        findMyUsers.map(findUser => 
+        <MyUserReview 
+              findUser={findUser}
+              deleteUser={deleteUser}
+              setDeleteUser={setDeleteUser}
+            ></MyUserReview>)
       }
     </div>
   );
