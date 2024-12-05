@@ -34,7 +34,7 @@ const router = createBrowserRouter([
             {
                 path:'/allReview',
                 element:<AllReview></AllReview>,
-                loader: ()=> fetch('http://localhost:5000/reviews')
+                loader: ()=> fetch('https://game-review-server.vercel.app/reviews')
             },
             {
                 path:'/addreview',
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
             {
                 path:'/myreviews',
                 element:<PrivateMyReview><MyReviews></MyReviews></PrivateMyReview>,
-                loader:()=> fetch('http://localhost:5000/reviews')
+                loader:()=> fetch('https://game-review-server.vercel.app/reviews')
             },
             {
                 path:'/watchlist',
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
             {
                 path:'/reviewDetails/:id',
                 element:<ReviewDetails></ReviewDetails>,
-                loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`)
+                loader: ({params}) => fetch(`https://game-review-server.vercel.app/reviews/${params.id}`)
             }
         ]
     },
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
     {
         path:'/allReview',
         element:<AllReview></AllReview>,
-        loader: ()=> fetch('http://localhost:5000/reviews')
+        loader: ()=> fetch('https://game-review-server.vercel.app/reviews')
     },
     {
         path:'/addreview',
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
     {
         path:'/reviewDetails/:id',
         element:<ReviewDetails></ReviewDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`)
+        loader: ({params}) => fetch(`https://game-review-server.vercel.app/reviews/${params.id}`)
     }
 
   ]);

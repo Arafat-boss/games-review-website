@@ -1,12 +1,28 @@
 import React from "react";
 import { MdHexagon } from "react-icons/md";
 import { useLoaderData } from "react-router-dom";
-import Navbar from "../RafComponents/Navbar";
-import Footer from "../RafComponents/Footer";
 
 const ReviewDetails = () => {
   const details = useLoaderData();
   console.log(details);
+
+  const handleWatchList =(watchList)=>{
+    console.log(watchList);
+    const {email, name, photo, rating, title, description, date, genres} = watchList;
+    const watchData = {email, name, photo, rating, title, description, date, genres}
+    fetch('https://game-review-server.vercel.app/watch',{
+      method:"POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(watchData),
+    })
+    .then(res => res.json())
+    .then(data =>{
+      console.log(data);
+    })
+  }
+
+
+
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-6 bg-white shadow-lg rounded-lg p-6 border border-gray-300">
@@ -44,7 +60,7 @@ const ReviewDetails = () => {
 
           {/* Button */}
          <div className="">
-         <button className="mt-6 text-white btn flex bg-gradient-to-r from-violet-500 to-fuchsia-500 w-full">Add to WatchList</button>
+         <button onClick={()=>handleWatchList(details)} className="mt-6 text-white btn flex bg-gradient-to-r from-violet-500 to-fuchsia-500 w-full">Add to WatchList</button>
          </div>
         </div>
       </div>
