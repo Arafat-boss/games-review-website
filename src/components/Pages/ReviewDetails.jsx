@@ -1,6 +1,7 @@
 import React from "react";
 import { MdHexagon } from "react-icons/md";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ReviewDetails = () => {
   const details = useLoaderData();
@@ -10,7 +11,7 @@ const ReviewDetails = () => {
     console.log(watchList);
     const {email, name, photo, rating, title, description, date, genres} = watchList;
     const watchData = {email, name, photo, rating, title, description, date, genres}
-    fetch('https://game-review-server.vercel.app/watch',{
+    fetch('http://localhost:5000/watch',{
       method:"POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(watchData),
@@ -18,6 +19,14 @@ const ReviewDetails = () => {
     .then(res => res.json())
     .then(data =>{
       console.log(data);
+      if(data.insertedId){
+        Swal.fire({
+          title: 'Success',
+          text: 'Successfully added your review to watch list',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        })
+      }
     })
   }
 

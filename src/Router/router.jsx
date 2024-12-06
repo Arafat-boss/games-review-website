@@ -47,7 +47,8 @@ const router = createBrowserRouter([
             },
             {
                 path:'/watchlist',
-                element:<PrivateWatchlist><WatchList></WatchList></PrivateWatchlist>
+                element:<PrivateWatchlist><WatchList></WatchList></PrivateWatchlist>,
+                loader:()=> fetch('http://localhost:5000/watch'),
             },
             {
                 path:'/reviewDetails/:id',
@@ -56,36 +57,37 @@ const router = createBrowserRouter([
             }
         ]
     },
-    {
-        path:'/login',
-        element: <Login></Login>
-    },
-    {
-        path:'/register',
-        element:<Register></Register>
-    },
-    {
-        path:'/allReview',
-        element:<AllReview></AllReview>,
-        loader: ()=> fetch('https://game-review-server.vercel.app/reviews')
-    },
-    {
-        path:'/addreview',
-        element:<PrivateAddReview><AddReview></AddReview></PrivateAddReview>
-    },
-    {
-        path:'/myreviews',
-        element:<PrivateMyReview><MyReviews></MyReviews></PrivateMyReview>
-    },
-    {
-        path:'/watchlist',
-        element:<PrivateWatchlist><WatchList></WatchList></PrivateWatchlist>
-    },
-    {
-        path:'/reviewDetails/:id',
-        element:<ReviewDetails></ReviewDetails>,
-        loader: ({params}) => fetch(`https://game-review-server.vercel.app/reviews/${params.id}`)
-    }
+    // {
+    //     path:'/login',
+    //     element: <Login></Login>
+    // },
+    // {
+    //     path:'/register',
+    //     element:<Register></Register>
+    // },
+    // {
+    //     path:'/allReview',
+    //     element:<AllReview></AllReview>,
+    //     loader: ()=> fetch('https://game-review-server.vercel.app/reviews')
+    // },
+    // {
+    //     path:'/addreview',
+    //     element:<PrivateAddReview><AddReview></AddReview></PrivateAddReview>
+    // },
+    // {
+    //     path:'/myreviews',
+    //     element:<PrivateMyReview><MyReviews></MyReviews></PrivateMyReview>
+    // },
+    // {
+    //     path:'/watchlist',
+    //     loader:()=> fetch('https://game-review-server.vercel.app/watch'),
+    //     element:<PrivateWatchlist><WatchList></WatchList></PrivateWatchlist>
+    // },
+    // {
+    //     path:'/reviewDetails/:id',
+    //     element:<ReviewDetails></ReviewDetails>,
+    //     loader: ({params}) => fetch(`https://game-review-server.vercel.app/reviews/${params.id}`)
+    // }
 
   ]);
 
