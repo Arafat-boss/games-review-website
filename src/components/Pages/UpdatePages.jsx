@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import Navbar from "../RafComponents/Navbar";
-import { AuthContext } from "../Provider/AuthProvider";
+import React from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
-const AddReview = () => {
-  const navigate = useNavigate()
-  const { user } = useContext(AuthContext);
+const UpdatePages = () => {
+    const navigate = useNavigate()
+  const user = useLoaderData();
+const {_id,email,name,title,photo,rating,date,description,genres} = user
 
-  const handelAddReview = (e) => {
+
+  const handelUpdate = (e) => {
     e.preventDefault();
     const from = e.target;
     const email = from.email.value;
@@ -19,7 +19,7 @@ const AddReview = () => {
     const date = from.date.value;
     const description = from.description.value;
     const genres = from.genres.value;
-    const review = {
+    const update = {
       email,
       name,
       title,
@@ -29,18 +29,19 @@ const AddReview = () => {
       description,
       genres,
     };
-    console.log(review);
-    fetch("https://game-review-server.vercel.app/reviews", {
-      method: "POST",
+    console.log(update);
+    fetch(`http://localhost:5000/reviews/${_id}`, {
+      method: "PUT",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(review),
+      body: JSON.stringify(update),
     })
       .then(res => res.json())
       .then((data) => {
-        if(data.insertedId){
+        console.log(data);
+        if(data.modifiedCount> 0){
             Swal.fire({
                 title: 'Success',
-                text: 'Successfully added your review',
+                text: '✨ Review Updated! Your changes have been saved. ✅ ',
                 icon: 'success',
                 confirmButtonText: 'Cool'
               })
@@ -48,11 +49,13 @@ const AddReview = () => {
         }
       });
   };
+
+
   return (
     <div>
       <div>
         <form
-          onSubmit={handelAddReview}
+          onSubmit={handelUpdate}
           className="max-w-xl mx-auto border-2 p-24 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl"
         >
           <div className="relative z-0 w-full mb-5 group">
@@ -60,7 +63,7 @@ const AddReview = () => {
               type="email"
               name="email"
               id="floating_email"
-              value={user?.email}
+              value={email}
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=""
               required
@@ -76,7 +79,7 @@ const AddReview = () => {
             <input
               type="text"
               name="name"
-              value={user.displayName}
+              value={name}
               id="floating_password"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
@@ -95,6 +98,7 @@ const AddReview = () => {
               <input
                 type="text"
                 name="title"
+                defaultValue={title}
                 id="floating_first_name"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -111,6 +115,7 @@ const AddReview = () => {
               <input
                 type="text"
                 name="photo"
+                defaultValue={photo}
                 id="floating_last_name"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -129,6 +134,7 @@ const AddReview = () => {
               <input
                 type="text"
                 name="rating"
+                defaultValue={rating}
                 id="floating_first_name"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -145,6 +151,7 @@ const AddReview = () => {
               <input
                 type="text"
                 name="date"
+                defaultValue={date}
                 id="floating_last_name"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -163,6 +170,7 @@ const AddReview = () => {
               <input
                 type="text"
                 name="description"
+                defaultValue={description}
                 id="floating_first_name"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -180,7 +188,7 @@ const AddReview = () => {
                 Underline select
               </label>
               <select
-              name="genres"
+                name="genres"
                 id="underline_select"
                 className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-black appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-black peer"
               >
@@ -197,7 +205,7 @@ const AddReview = () => {
             type="submit"
             className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Add Review
+            Update Review
           </button>
         </form>
       </div>
@@ -205,4 +213,4 @@ const AddReview = () => {
   );
 };
 
-export default AddReview;
+export default UpdatePages;

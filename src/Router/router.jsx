@@ -12,6 +12,7 @@ import ErrorPages from "../components/Pages/ErrorPages";
 import HomePage from "../components/Pages/HomePage";
 import ReviewDetails from "../components/Pages/ReviewDetails";
 import AllReview from "../components/Pages/AllReview";
+import UpdatePages from "../components/Pages/UpdatePages";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
             {
                 path:'/reviewDetails/:id',
                 element:<ReviewDetails></ReviewDetails>,
+                loader: ({params}) => fetch(`https://game-review-server.vercel.app/reviews/${params.id}`)
+            },
+            {
+                path:'/updateReview/:id',
+                element:<UpdatePages></UpdatePages>,
                 loader: ({params}) => fetch(`https://game-review-server.vercel.app/reviews/${params.id}`)
             }
         ]

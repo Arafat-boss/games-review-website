@@ -8,13 +8,13 @@ const MyReviews = () => {
   const { user } = useContext(AuthContext);
   const myUser = useLoaderData();
   const findMyUsers = [...myUser].filter((item) => item.email == user.email);
-  console.log(findMyUsers);
+  // console.log(findMyUsers);
   const [deleteUser, setDeleteUser] = useState(findMyUsers)
-  console.log(deleteUser);
+  // console.log(deleteUser);
   return (
     <div>
       {
-        findMyUsers.map(findUser => 
+        deleteUser.map(findUser => 
         <MyUserReview 
               findUser={findUser}
               deleteUser={deleteUser}

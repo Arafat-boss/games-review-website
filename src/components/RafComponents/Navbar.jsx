@@ -126,7 +126,7 @@ const Navbar = () => {
         <div>
           {user && user?.email ? (
             <div 
-            className="flex justify-center items-center gap-3 relative"
+            className="flex justify-center items-center gap-3 z-50 relative"
             onMouseEnter={() => setIsTooltip(true)}
             onMouseLeave={()=> setIsTooltip(false)}
             >
@@ -136,7 +136,7 @@ const Navbar = () => {
                 alt=""
               />
               {isTooltip && (
-                <div className="font-bold absolute top-14 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-sky-500 to-indigo-500 p-5 text-white rounded-xl ">
+                <div className="font-bold absolute top-14 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-sky-200 to-indigo-2 w-32 py-2 px-4 text-black rounded-xl ">
                   {user.displayName}</div>)}
             </div>
             
