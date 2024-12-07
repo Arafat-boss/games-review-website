@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { IoLogInOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
-import logoImg from "../../assets/logo.jpg";
+import logoImg from "../../assets/9618073-removebg-preview.png";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -62,7 +62,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="text-xl ">
-          {/* <img className="w-56" src={logoImg} alt="" /> */}LOGO
+          <img className="w-16" src={logoImg} alt="" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

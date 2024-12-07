@@ -13,12 +13,13 @@ const WatchList = () => {
   console.log(findWatchUsers);
   return (
     <div className="">
-      <thead className="table flex mx-auto">
-        <tr>
+      <thead className="table flex justify-between mx-auto">
+        <tr className="flex justify-between">
           <th></th>
-          <th className="border">Name</th>
-          <th className="border">Email</th>
-          <th className="border ml-10">Genres</th>
+          <th className="">Name</th>
+          <th className="">Email</th>
+          <th className="">Genres</th>
+          <th></th>
         </tr>
       </thead>
       {findWatchUsers.map((wList) => (
