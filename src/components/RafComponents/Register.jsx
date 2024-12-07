@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import Navbar from "./Navbar";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
+import registerAnimation from "../../animation/registerAnimation.json"
 
 const Register = () => {
   const navigate = useNavigate();
@@ -39,10 +40,16 @@ const Register = () => {
   };
   return (
     <div>
-       <h1 className="text-5xl font-bold max-w-xl mx-auto mt-10 mb-5">
+      
+      <form onSubmit={handelRegister} className="border-none rounded-lg max-w-xl mx-auto border-2 p-20 mt-10 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl">
+      <h1 className="text-5xl font-bold text-center mb-5">
         Register now!
       </h1>
-      <form onSubmit={handelRegister} className="max-w-xl mx-auto border-2 p-24 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl">
+      <Lottie
+          animationData={registerAnimation}
+          loop={true}
+          className="w-52 h-32 mx-auto"
+        />
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="email"
@@ -114,7 +121,7 @@ const Register = () => {
           type="submit"
           className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          Submit
+          Register
         </button>
       </form>
     </div>

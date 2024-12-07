@@ -49,11 +49,10 @@ const AddReview = () => {
       });
   };
   return (
-    <div>
-      <div>
+      <div className="mt-10">
         <form
           onSubmit={handelAddReview}
-          className="max-w-xl mx-auto border-2 p-24 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl"
+          className="rounded-lg border-none max-w-xl mx-auto border-2 p-24 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl"
         >
           <div className="relative z-0 w-full mb-5 group">
             <input
@@ -201,7 +200,6 @@ const AddReview = () => {
           </button>
         </form>
       </div>
-    </div>
   );
 };
 

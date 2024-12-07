@@ -30,7 +30,7 @@ const {_id,email,name,title,photo,rating,date,description,genres} = user
       genres,
     };
     console.log(update);
-    fetch(`http://localhost:5000/reviews/${_id}`, {
+    fetch(`https://game-review-server.vercel.app/reviews/${_id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(update),

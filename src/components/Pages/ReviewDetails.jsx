@@ -30,7 +30,7 @@ const ReviewDetails = () => {
       genres,
     };
     // console.log(watchData);
-    fetch("http://localhost:5000/watch", {
+    fetch("https://game-review-server.vercel.app/watch", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(watchData),

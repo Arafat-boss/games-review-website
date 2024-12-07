@@ -2,6 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import Lottie from "lottie-react";
+import loginAnimation from "../../animation/loginAnimation.json"
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,10 +43,15 @@ const Login = () => {
   return (
     <div>
       {/* <Navbar></Navbar> */}
-      <h1 className="text-5xl font-bold max-w-xl mx-auto mt-10 mb-5">
+      <form onSubmit={handelLogin} className="mt-10 rounded-lg border-none max-w-xl mx-auto border-2 p-24 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl">
+      <h1 className="text-3xl font-bold text-center text-purple-500 mx-auto">
         Login now!
       </h1>
-      <form onSubmit={handelLogin} className="max-w-xl mx-auto border-2 p-24 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl">
+      <Lottie
+          animationData={loginAnimation}
+          loop={true}
+          className="w-52 h-32 mx-auto"
+        />
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="email"
@@ -77,17 +85,19 @@ const Login = () => {
           </label>
         </div>
 
-        <div className="space-x-5">
+        <div className="lg:flex mb:flex">
           <button
             type="submit"
-            className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+            mr-4 mt-2
+            "
           >
-            Submit
+            Log in
           </button>
           <button
             onClick={handelGoogle}
             type="submit"
-            className="text-white bg-gradient-to-r from-purple-500 to-pink-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="mt-2 text-white bg-gradient-to-r from-purple-500 to-pink-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Google
           </button>

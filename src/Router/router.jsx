@@ -22,7 +22,8 @@ const router = createBrowserRouter([
         children:[
             {
                 path:'/',
-                element:<HomePage></HomePage>
+                element:<HomePage></HomePage>,
+                loader: ()=> fetch('https://game-review-server.vercel.app/reviews/limit')
             },
             {
                 path:'/login',
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
             {
                 path:'/watchlist',
                 element:<PrivateWatchlist><WatchList></WatchList></PrivateWatchlist>,
-                loader:()=> fetch('http://localhost:5000/watch'),
+                loader:()=> fetch('https://game-review-server.vercel.app/watch'),
             },
             {
                 path:'/reviewDetails/:id',

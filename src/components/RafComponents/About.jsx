@@ -1,6 +1,12 @@
 import React from "react";
 import { FaGamepad, FaStar, FaUsers } from "react-icons/fa";
 import { MdOutlineUpdate } from "react-icons/md";
+import animationData from '../../animation/star.json'
+import animationData2 from '../../animation/update.json'
+import animationData3 from '../../animation/design.json'
+import Lottie from "lottie-react";
+
+
 
 const About = () => {
   return (
@@ -15,7 +21,11 @@ const About = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Feature 1 */}
         <div className="card bg-base-100 shadow-md p-5 text-center">
-          <FaGamepad className="text-5xl text-primary mx-auto mb-4" />
+        <Lottie
+          animationData={animationData3}
+          loop={true}
+          className="w-52 h-32 mx-auto"
+        />
           <h2 className="text-xl font-semibold text-secondary mb-2">Modern Design</h2>
           <p className="text-gray-600">
             Crafted with <span className="font-bold">React</span> and styled using <span className="font-bold">Tailwind CSS</span> for a seamless, modern experience.
@@ -24,7 +34,11 @@ const About = () => {
 
         {/* Feature 2 */}
         <div className="card bg-base-100 shadow-md p-5 text-center">
-          <FaStar className="text-5xl text-primary mx-auto mb-4" />
+        <Lottie
+          animationData={animationData}
+          loop={true}
+          className="w-60 h-32 mx-auto"
+        />
           <h2 className="text-xl font-semibold text-secondary mb-2">Top Reviews</h2>
           <p className="text-gray-600">
             Explore curated lists of top-rated games and detailed reviews for every genre.
@@ -33,7 +47,11 @@ const About = () => {
 
         {/* Feature 3 */}
         <div className="card bg-base-100 shadow-md p-5 text-center">
-          <MdOutlineUpdate className="text-5xl text-primary mx-auto mb-4" />
+        <Lottie
+          animationData={animationData2}
+          loop={true}
+          className="w-60 h-32 mx-auto"
+        />
           <h2 className="text-xl font-semibold text-secondary mb-2">Latest Updates</h2>
           <p className="text-gray-600">
             Stay updated with the latest gaming news and trending titles.
