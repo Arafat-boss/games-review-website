@@ -3,6 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import registerAnimation from "../../animation/registerAnimation.json"
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -40,7 +41,9 @@ const Register = () => {
   };
   return (
     <div>
-      
+      <Helmet>
+        <title>Register</title>
+    </Helmet>
       <form onSubmit={handelRegister} className="border-none rounded-lg max-w-xl mx-auto border-2 p-20 mt-10 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl">
       <h1 className="text-5xl font-bold text-center mb-5">
         Register now!

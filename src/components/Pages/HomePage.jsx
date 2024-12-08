@@ -4,10 +4,14 @@ import Slider from "../RafComponents/Slider";
 import Cards from "../RafComponents/Cards";
 import MiniDetailes from "../RafComponents/MiniDetailes";
 import About from "../RafComponents/About";
+import { Helmet } from "react-helmet";
 
 const HomePage = () => {
   return (
     <div>
+      <Helmet>
+        <title>Home</title>
+    </Helmet>
       <section>
         <Slider></Slider>
       </section>

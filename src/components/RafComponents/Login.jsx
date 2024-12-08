@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Lottie from "lottie-react";
 import loginAnimation from "../../animation/loginAnimation.json"
+import { Helmet } from "react-helmet";
 
 
 const Login = () => {
@@ -42,6 +43,9 @@ const Login = () => {
 
   return (
     <div>
+       <Helmet>
+        <title>Login</title>
+    </Helmet>
       {/* <Navbar></Navbar> */}
       <form onSubmit={handelLogin} className="mt-10 rounded-lg border-none max-w-xl mx-auto border-2 p-24 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl">
       <h1 className="text-3xl font-bold text-center text-purple-500 mx-auto">

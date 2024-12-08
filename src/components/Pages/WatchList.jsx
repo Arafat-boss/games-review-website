@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import SingleWatchList from "../RafComponents/SingleWatchList";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const WatchList = () => {
   const { user } = useContext(AuthContext);
@@ -13,6 +14,9 @@ const WatchList = () => {
   console.log(findWatchUsers);
   return (
     <div className="">
+      <Helmet>
+        <title>Watch List</title>
+    </Helmet>
       <thead className="table flex justify-between mx-auto">
         <tr className="flex justify-between">
           <th></th>

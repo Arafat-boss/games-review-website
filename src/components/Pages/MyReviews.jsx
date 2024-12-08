@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaStar } from "react-icons/fa";
 import MyUserReview from "../RafComponents/MyUserReview";
+import { Helmet } from "react-helmet";
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
@@ -13,6 +14,9 @@ const MyReviews = () => {
   // console.log(deleteUser);
   return (
     <div>
+      <Helmet>
+        <title>My Reviews</title>
+    </Helmet>
       {
         deleteUser.map(findUser => 
         <MyUserReview 

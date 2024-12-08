@@ -5,6 +5,7 @@ import Card from "../RafComponents/Card";
 import Lottie from "lottie-react";
 import animationData from "../../animation/animation.json";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { Helmet } from "react-helmet";
 
 const AllReview = () => {
   const allReviewData = useLoaderData(); // Original data
@@ -27,6 +28,9 @@ const AllReview = () => {
 
   return (
     <>
+    <Helmet>
+        <title>All Reviews</title>
+    </Helmet>
       <div className="text-center my-1">
         <Lottie animationData={animationData} loop className="w-60 h-32 mx-auto" />
         <h2 className="text-3xl font-bold text-yellow-500">

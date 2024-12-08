@@ -3,6 +3,7 @@ import Navbar from "../RafComponents/Navbar";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AddReview = () => {
   const navigate = useNavigate()
@@ -50,6 +51,9 @@ const AddReview = () => {
   };
   return (
       <div className="mt-10">
+        <Helmet>
+        <title>Add Review</title>
+    </Helmet>
         <form
           onSubmit={handelAddReview}
           className="rounded-lg border-none max-w-xl mx-auto border-2 p-24 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl"

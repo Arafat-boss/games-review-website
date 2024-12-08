@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -53,6 +54,9 @@ const {_id,email,name,title,photo,rating,date,description,genres} = user
 
   return (
     <div>
+      <Helmet>
+        <title>Update Pages</title>
+    </Helmet>
       <div>
         <form
           onSubmit={handelUpdate}
