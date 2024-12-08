@@ -7,21 +7,6 @@ const Cards = () => {
     const allData = useLoaderData()
     const [data, setData] = useState(allData)
 
-    // useEffect(()=>{
-    //     fetch('https://game-review-server.vercel.app/reviews')
-    //     .then(res => res.json())
-    //     .then(data =>{
-    //         setData(data);
-    //     })
-    // },[])
-
-
-    // const sortedData = [...data].sort((a, b) => b.rating - a.rating);
-
-    // // Step 2: Take the top 6 items
-    // const topSix = sortedData.slice(0, 6);
-
-
     return (
         <>
         <Fade>
