@@ -1,3 +1,7 @@
+WEBSITE NAME: Game Reviews
+Live Link : https://assignment-game-review.web.app
+
+
 **React & Firebase Authentication: My app is developed using React, with Firebase authentication handling user login, registration, and session management.
 
 

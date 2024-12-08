@@ -61,8 +61,9 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link to="/" className="text-xl ">
+        <Link to="/" className="text-xl flex items-center ">
           <img className="w-16" src={logoImg} alt="" />
+          <p className="font-semibold text-blue-500">Game Reviews</p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
