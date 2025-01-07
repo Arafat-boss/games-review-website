@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { AiFillPhone, AiOutlineMail, AiFillEnvironment } from "react-icons/ai";
 
 import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
 
 const ContactUs = () => {
   const form = useRef()
@@ -18,6 +19,13 @@ const ContactUs = () => {
       .then(
         () => {
           console.log("SUCCESS!");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your Message Successfully Send",
+            showConfirmButton: false,
+            timer: 1500
+          });
         },
         (error) => {
           console.log("FAILED...", error.text);
