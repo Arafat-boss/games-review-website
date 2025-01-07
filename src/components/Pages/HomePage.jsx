@@ -5,6 +5,7 @@ import Cards from "../RafComponents/Cards";
 import MiniDetailes from "../RafComponents/MiniDetailes";
 import About from "../RafComponents/About";
 import { Helmet } from "react-helmet";
+import Games from "../RafComponents/Games";
 
 const HomePage = () => {
   return (
@@ -22,6 +23,9 @@ const HomePage = () => {
         <Cards></Cards>
         <section >
           <MiniDetailes></MiniDetailes>
+        </section>
+        <section>
+          <Games></Games>
         </section>
       </main>
     </div>

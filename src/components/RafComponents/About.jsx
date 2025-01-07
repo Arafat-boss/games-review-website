@@ -10,10 +10,10 @@ import Lottie from "lottie-react";
 
 const About = () => {
   return (
-    <div className="bg-base-200 py-10 px-4 lg:px-20">
+    <div className="text-[#25000d] py-10 px-4 lg:px-20">
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-primary">About Us </h1>
-        <p className="text-lg text-gray-600 mt-2">
+        <h1 className="text-4xl font-bold">About Us </h1>
+        <p className="text-lg  mt-2">
           Welcome to <span className="text-secondary font-semibold">Game Review</span> – your ultimate gaming companion!
         </p>
       </div>
@@ -27,7 +27,7 @@ const About = () => {
           className="w-52 h-32 mx-auto"
         />
           <h2 className="text-xl font-semibold text-secondary mb-2">Modern Design</h2>
-          <p className="text-gray-600">
+          <p className="">
             Crafted with <span className="font-bold">React</span> and styled using <span className="font-bold">Tailwind CSS</span> for a seamless, modern experience.
           </p>
         </div>
@@ -40,7 +40,7 @@ const About = () => {
           className="w-60 h-32 mx-auto"
         />
           <h2 className="text-xl font-semibold text-secondary mb-2">Top Reviews</h2>
-          <p className="text-gray-600">
+          <p className="">
             Explore curated lists of top-rated games and detailed reviews for every genre.
           </p>
         </div>
@@ -53,7 +53,7 @@ const About = () => {
           className="w-60 h-32 mx-auto"
         />
           <h2 className="text-xl font-semibold text-secondary mb-2">Latest Updates</h2>
-          <p className="text-gray-600">
+          <p className="">
             Stay updated with the latest gaming news and trending titles.
           </p>
         </div>

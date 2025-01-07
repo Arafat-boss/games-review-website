@@ -3,16 +3,16 @@ import MainLayout from "../components/Layout/MainLayout";
 import Login from "../components/RafComponents/Login";
 import Register from "../components/RafComponents/Register";
 import AddReview from "../components/Pages/AddReview";
-import PrivateAddReview from "../components/Private/PrivateAddReview";
 import MyReviews from "../components/Pages/MyReviews";
-import PrivateMyReview from "../components/Private/PrivateMyReview";
-import PrivateWatchlist from "../components/Private/PrivateWatchlist";
 import WatchList from "../components/Pages/WatchList";
 import ErrorPages from "../components/Pages/ErrorPages";
 import HomePage from "../components/Pages/HomePage";
 import ReviewDetails from "../components/Pages/ReviewDetails";
 import AllReview from "../components/Pages/AllReview";
 import UpdatePages from "../components/Pages/UpdatePages";
+import ContactUs from "../components/Pages/ContactUs";
+import Support from "../components/Pages/Support";
+import PrivateRoute from "../components/Private/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +30,14 @@ const router = createBrowserRouter([
                 element: <Login></Login>
             },
             {
+                path:'/contact',
+                element: <ContactUs></ContactUs>
+            },
+            {
+                path:'/support',
+                element: <Support></Support>
+            },
+            {
                 path:'/register',
                 element:<Register></Register>
             },
@@ -40,16 +48,16 @@ const router = createBrowserRouter([
             },
             {
                 path:'/addreview',
-                element:<PrivateAddReview><AddReview></AddReview></PrivateAddReview>
+                element:<PrivateRoute><AddReview></AddReview></PrivateRoute>
             },
             {
                 path:'/myreviews',
-                element:<PrivateMyReview><MyReviews></MyReviews></PrivateMyReview>,
+                element:<PrivateRoute><MyReviews></MyReviews></PrivateRoute>,
                 loader:()=> fetch('https://game-review-server.vercel.app/reviews')
             },
             {
                 path:'/watchlist',
-                element:<PrivateWatchlist><WatchList></WatchList></PrivateWatchlist>,
+                element:<PrivateRoute><WatchList></WatchList></PrivateRoute>,
                 loader:()=> fetch('https://game-review-server.vercel.app/watch'),
             },
             {

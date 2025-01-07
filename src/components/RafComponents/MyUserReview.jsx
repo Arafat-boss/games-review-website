@@ -46,7 +46,7 @@ const MyUserReview = ({ findUser, deleteUser, setDeleteUser }) => {
 
   return (
     <div className="w-11/12 mx-auto">
-      <div className="lg:flex mb:flex mb-3  bg-base-100 border rounded-lg p-4">
+      <div className="lg:flex mb:flex mb-3 justify-between bg-base-100 border rounded-lg p-4">
         {/* Content Section */}
         <div className="">
           {/* Title */}

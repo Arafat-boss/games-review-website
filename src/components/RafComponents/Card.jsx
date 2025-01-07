@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Card = ({ card }) => {
   return (
     <div>
-      <div className="card w-full bg-base-100 shadow-xl border border-gray-200">
+      <div className="card w-full bg-[#ffd8dc] text-[#25000d] shadow-xl border border-gray-200">
         <figure>
           <img
             src={card.photo}
@@ -21,19 +21,19 @@ const Card = ({ card }) => {
               <span className="font-semibold">{card.rating}/10</span>
             </div>
           </div>
-          <p className="text-gray-500 text-sm mt-2">{card.description}</p>
+          <p className=" text-sm">{card.description}</p>
           <div className="flex justify-between items-center">
-            <div className="mt-3">
-              <span className="badge badge-primary">{card.genres}</span>
+            <div className="">
+              <span className="badge bg-[#fe694b]">{card.genres}</span>
             </div>
-            <div className="text-right text-gray-400 text-sm mt-1">
+            <div className="text-right  text-sm ">
               Published: {card.date}
             </div>
           </div>
         </div>
-        <div className="card-actions flex justify-center mb-6">
+        <div className="card-actions -mt-5 w-full mb-6 flex justify-center">
           <Link to={`/reviewDetails/${card._id}`}>
-            <button className="btn btn-primary">
+            <button className="btn w-full bg-gradient-to-r from-red-400 to-[#fd0259] hover:bg-rose-300">
               Explore Details
             </button>
           </Link>
@@ -44,3 +44,4 @@ const Card = ({ card }) => {
 };
 
 export default Card;
+

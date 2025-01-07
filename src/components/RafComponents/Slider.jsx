@@ -1,8 +1,11 @@
 import React from "react";
-import slider1 from"../../assets/slider1.jpg";
+import slider1 from"../../assets/game1.jpg";
+import slider2 from"../../assets/mini1.jpg";
+import slider3 from"../../assets/mini3.jpg";
+import slider4 from"../../assets/mini4.jpg";
 const Slider = () => {
   return (
-    <div className="carousel h-2/4 w-full">
+    <div className="carousel h-[500px] w-full">
       <div id="slide1" className="carousel-item relative w-full">
         <img
           src={slider1}
@@ -19,7 +22,7 @@ const Slider = () => {
       </div>
       <div id="slide2" className="carousel-item relative w-full">
         <img
-          src={slider1}
+          src={slider2}
           className="w-full"
         />
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
@@ -33,7 +36,7 @@ const Slider = () => {
       </div>
       <div id="slide3" className="carousel-item relative w-full">
         <img
-          src={slider1}
+          src={slider3}
           className="w-full"
         />
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
@@ -47,7 +50,7 @@ const Slider = () => {
       </div>
       <div id="slide4" className="carousel-item relative w-full">
         <img
-          src={slider1}
+          src={slider4}
           className="w-full"
         />
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">

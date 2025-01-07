@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { loginUser, googleProvider } = useContext(AuthContext);
 
   const handelLogin = (e) => {
@@ -47,7 +48,7 @@ const Login = () => {
         <title>Login</title>
     </Helmet>
       {/* <Navbar></Navbar> */}
-      <form onSubmit={handelLogin} className="mt-10 rounded-lg border-none max-w-xl mx-auto border-2 p-24 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl">
+      <form onSubmit={handelLogin} className="mt-10 rounded-lg border-none max-w-xl mx-auto border-2 p-24 bg-[#f4e2e9] text-white shadow-xl">
       <h1 className="text-3xl font-bold text-center text-purple-500 mx-auto">
         Login now!
       </h1>

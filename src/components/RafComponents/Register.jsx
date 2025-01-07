@@ -44,7 +44,7 @@ const Register = () => {
       <Helmet>
         <title>Register</title>
     </Helmet>
-      <form onSubmit={handelRegister} className="border-none rounded-lg max-w-xl mx-auto border-2 p-20 mt-10 bg-gradient-to-r from-teal-200 to-purple-300 text-white shadow-xl">
+      <form onSubmit={handelRegister} className="border-none rounded-lg max-w-xl mx-auto border-2 p-20 mt-10 bg-[#f4e2e9] shadow-xl">
       <h1 className="text-5xl font-bold text-center mb-5">
         Register now!
       </h1>
@@ -122,7 +122,7 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white bg-gradient-to-r from-red-400 to-[#fd0259] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Register
         </button>

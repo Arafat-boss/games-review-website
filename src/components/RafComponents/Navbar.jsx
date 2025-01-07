@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { FaChevronRight, FaUser } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { IoLogInOutline } from "react-icons/io5";
@@ -8,7 +7,7 @@ import logoImg from "../../assets/9618073-removebg-preview.png";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
-  const [isTooltip, setIsTooltip] = useState(false)
+  const [isTooltip, setIsTooltip] = useState(false);
 
   const handelSignOut = () => {
     signOutUser()
@@ -21,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-gradient-to-r from-indigo-200 to-purple-100 px-10">
+    <div className="navbar  px-10">
       <div className="navbar-start ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -50,38 +49,65 @@ const Navbar = () => {
             <li>
               <NavLink to="/allReview">All Reviews</NavLink>
             </li>
+            {user && (
+              <li>
+                <NavLink to="/addreview">Add Review</NavLink>
+              </li>
+            )}
+            {user && (
+              <li>
+                <NavLink to="/myreviews">My Review</NavLink>
+              </li>
+            )}
+            {user && (
+              <li>
+                <NavLink to="/watchlist">Game WatchList</NavLink>
+              </li>
+            )}
+
             <li>
-              <NavLink to="/addreview">Add Review</NavLink>
+              <NavLink to="/contact">Contact</NavLink>
             </li>
             <li>
-              <NavLink to="/myreviews">My Review</NavLink>
-            </li>
-            <li>
-              <NavLink to="/watchlist">Game WatchList</NavLink>
+              <NavLink to="/support">Support </NavLink>
             </li>
           </ul>
         </div>
         <Link to="/" className="text-xl flex items-center ">
           <img className="w-16" src={logoImg} alt="" />
-          <p className="font-semibold text-blue-500">Game Reviews</p>
+          <p className="font-semibold text-[#fd0259]">Game Reviews</p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 space-x-5">
+        <ul className="menu menu-horizontal px-1 space-x-2">
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
             <NavLink to="/allReview">All Reviews</NavLink>
           </li>
+
+          {user && (
+            <li>
+              <NavLink to="/addreview">Add Review</NavLink>
+            </li>
+          )}
+          {user && (
+            <li>
+              <NavLink to="/myreviews">My Review</NavLink>
+            </li>
+          )}
+          {user && (
+            <li>
+              <NavLink to="/watchlist">Game WatchList</NavLink>
+            </li>
+          )}
+
           <li>
-            <NavLink to="/addreview">Add Review</NavLink>
+            <NavLink to="/contact">Contact</NavLink>
           </li>
           <li>
-            <NavLink to="/myreviews">My Review</NavLink>
-          </li>
-          <li>
-            <NavLink to="/watchlist">Game WatchList</NavLink>
+            <NavLink to="/support">Support </NavLink>
           </li>
         </ul>
       </div>
@@ -126,10 +152,10 @@ const Navbar = () => {
         </div>
         <div>
           {user && user?.email ? (
-            <div 
-            className="flex justify-center items-center gap-3 z-50 relative"
-            onMouseEnter={() => setIsTooltip(true)}
-            onMouseLeave={()=> setIsTooltip(false)}
+            <div
+              className="flex justify-center items-center gap-3 z-50 relative"
+              onMouseEnter={() => setIsTooltip(true)}
+              onMouseLeave={() => setIsTooltip(false)}
             >
               <img
                 className="w-10 rounded-full h-10"
@@ -138,9 +164,10 @@ const Navbar = () => {
               />
               {isTooltip && (
                 <div className="font-bold absolute top-14 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-sky-200 to-indigo-2 w-32 py-2 px-4 text-black rounded-xl ">
-                  {user.displayName}</div>)}
+                  {user.displayName}
+                </div>
+              )}
             </div>
-            
           ) : (
             <></>
           )}
@@ -149,7 +176,7 @@ const Navbar = () => {
           <>
             <a
               onClick={handelSignOut}
-              className="btn text-lg bg-gradient-to-r from-indigo-700 to-purple-600 text-white"
+              className="btn btn-sm bg-gradient-to-r from-red-400 to-[#fd0259] text-white"
             >
               <CiLogout></CiLogout> Sign Out
             </a>
@@ -157,7 +184,7 @@ const Navbar = () => {
         ) : (
           <div>
             <Link
-              className="btn text-lg bg-gradient-to-r from-indigo-700 to-purple-600 text-white"
+              className="btn btn-sm bg-gradient-to-r from-red-400 to-[#fd0259] text-white"
               to="/login"
             >
               <IoLogInOutline></IoLogInOutline> Login
