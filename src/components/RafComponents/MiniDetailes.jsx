@@ -19,7 +19,7 @@ const MiniDetailes = () => {
                 in which the player primarily assumes the role of Altaïr, as
                 experienced through protagonist Desmond Miles.
               </p>
-              <button className="btn bg-[#fd0259]">Get Started</button>
+              <a href="https://www.giantbomb.com/gas-mask/3055-372/games/"className="btn bg-[#fd0259]">Get Started</a>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@ const MiniDetailes = () => {
                 almost any vehicle with inventory slots, but it's more efficient
                 to transport them in bulk as crates.
               </p>
-              <button className="btn bg-[#fd0259]">Get Started</button>
+              <a href="https://www.ubisoft.com/en-gb/game/assassins-creed/games"className="btn bg-[#fd0259]">Get Started</a>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@ const MiniDetailes = () => {
                 remain the last alive. Players can choose to enter the match
                 solo, duo, or with a small team of up to four people.
               </p>
-              <button className="btn bg-[#fd0259]">Get Started</button>
+              <a href="https://www.pubgmobile.com/en-US/home.shtml"className="btn bg-[#fd0259]">Get Started</a>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@ const MiniDetailes = () => {
                 long-serving veteran, there's a diversity of experiences
                 available that cater to a variety of tastes and abilities.
               </p>
-              <button className="btn bg-[#fd0259]">Get Started</button>
+              <a href="https://www.callofduty.com/"className="btn bg-[#fd0259]">Get Started</a>
             </div>
           </div>
         </div>
