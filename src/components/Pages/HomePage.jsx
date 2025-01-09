@@ -9,7 +9,7 @@ import Games from "../RafComponents/Games";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="">
       <Helmet>
         <title>Home</title>
     </Helmet>

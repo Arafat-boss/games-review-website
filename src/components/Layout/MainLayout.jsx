@@ -3,10 +3,11 @@ import Navbar from "../RafComponents/Navbar";
 import Footer from "../RafComponents/Footer";
 
 const MainLayout = () => {
-  
   return (
     <div>
-      <Navbar></Navbar>
+      <div className="h-[85px]">
+        <Navbar></Navbar>
+      </div>
       <div className="min-h-[calc(100vh-306px)]">
         <Outlet></Outlet>
       </div>

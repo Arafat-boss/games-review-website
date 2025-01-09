@@ -21,9 +21,9 @@ const Slider = () => {
         </div>
       </div>
       <div id="slide2" className="carousel-item relative w-full">
-        <img
+        <img 
           src={slider2}
-          className="w-full"
+          className="w-full bg-cover"
         />
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
           <a href="#slide1" className="btn btn-circle">
