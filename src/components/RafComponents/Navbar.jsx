@@ -20,8 +20,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar  px-10">
-      <div className="navbar-start ">
+    <div className="navbar fixed z-10 bg-base-200 opacity-90 px-10">
+      <div className="navbar-start  ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
