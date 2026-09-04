@@ -1,58 +1,168 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaGamepad, FaDiscord, FaTwitter, FaYoutube, FaTwitch, FaEnvelope, FaHeart } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      Swal.fire({
+        title: "Subscribed! 🎮",
+        text: "You're now on the VIP list for weekly curated game reviews!",
+        icon: "success",
+        confirmButtonColor: "#8b5cf6",
+      });
+      setEmail("");
+    }
+  };
+
   return (
-    <footer className="footer footer-center bg-gradient-to-r from-pink-200 to-purple-100   rounded p-10 mt-10">
-      <nav className="grid grid-flow-col gap-4">
-        <NavLink to="/" className="link link-hover">Home</NavLink>
-        <NavLink to="/allReview" className="link link-hover">All Reviews</NavLink>
-        <NavLink to="/addreview" className="link link-hover">Add Review</NavLink>
-        <NavLink to="/watchlist" className="link link-hover">Game WatchList</NavLink>
-      </nav>
-      <nav>
-        <div className="grid grid-flow-col gap-4">
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current text-blue-500"
-            >
-              <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-            </svg>
-          </a>
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current text-red-500"
-            >
-              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-            </svg>
-          </a>
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current text-blue-400"
-            >
-              <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-            </svg>
-          </a>
+    <footer className="bg-base-100 border-t border-base-content/10 text-base-content/80 mt-20 transition-colors duration-200">
+      {/* Upper Footer Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+          {/* Column 1: Brand & Bio (2 spans on desktop) */}
+          <div className="lg:col-span-2 space-y-4">
+            <Link to="/" className="flex items-center gap-2.5 group">
+              <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-accent p-0.5 shadow-lg">
+                <div className="w-full h-full bg-base-100 rounded-[10px] flex items-center justify-center">
+                  <FaGamepad className="text-xl text-primary" />
+                </div>
+              </div>
+              <span className="font-display font-extrabold text-2xl tracking-tight text-base-content">
+                GAME<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">REVIEWS</span>
+              </span>
+            </Link>
+            <p className="text-sm leading-relaxed text-base-content/70 max-w-sm">
+              Your ultimate hub for authentic game reviews, deep breakdowns, community ratings, and curated recommendations across PC, PlayStation, Xbox, and Nintendo.
+            </p>
+            {/* Social Icons */}
+            <div className="flex items-center gap-3 pt-2">
+              <a
+                href="https://discord.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-10 h-10 rounded-xl bg-base-200 hover:bg-primary hover:text-white flex items-center justify-center transition-all hover:-translate-y-1 shadow-sm text-base-content"
+                title="Discord Community"
+              >
+                <FaDiscord size={18} />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-10 h-10 rounded-xl bg-base-200 hover:bg-secondary hover:text-white flex items-center justify-center transition-all hover:-translate-y-1 shadow-sm text-base-content"
+                title="Twitter"
+              >
+                <FaTwitter size={18} />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-10 h-10 rounded-xl bg-base-200 hover:bg-error hover:text-white flex items-center justify-center transition-all hover:-translate-y-1 shadow-sm text-base-content"
+                title="YouTube"
+              >
+                <FaYoutube size={18} />
+              </a>
+              <a
+                href="https://twitch.tv"
+                target="_blank"
+                rel="noreferrer"
+                className="w-10 h-10 rounded-xl bg-base-200 hover:bg-purple-600 hover:text-white flex items-center justify-center transition-all hover:-translate-y-1 shadow-sm text-base-content"
+                title="Twitch"
+              >
+                <FaTwitch size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* Column 2: Navigation */}
+          <div className="space-y-3">
+            <h3 className="font-display font-bold text-base text-base-content tracking-wide uppercase">
+              Explore
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/" className="hover:text-primary transition-colors">Home Page</Link>
+              </li>
+              <li>
+                <Link to="/allReview" className="hover:text-primary transition-colors">All Reviews</Link>
+              </li>
+              <li>
+                <Link to="/addreview" className="hover:text-primary transition-colors">Post a Review</Link>
+              </li>
+              <li>
+                <Link to="/watchlist" className="hover:text-primary transition-colors">My WatchList</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Genres */}
+          <div className="space-y-3">
+            <h3 className="font-display font-bold text-base text-base-content tracking-wide uppercase">
+              Popular Genres
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/allReview" className="hover:text-primary transition-colors">Action & Adventure</Link>
+              </li>
+              <li>
+                <Link to="/allReview" className="hover:text-primary transition-colors">RPG & Souls-like</Link>
+              </li>
+              <li>
+                <Link to="/allReview" className="hover:text-primary transition-colors">Strategy & Sci-Fi</Link>
+              </li>
+              <li>
+                <Link to="/allReview" className="hover:text-primary transition-colors">Survival Horror</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Newsletter */}
+          <div className="space-y-3">
+            <h3 className="font-display font-bold text-base text-base-content tracking-wide uppercase">
+              Gaming Digest
+            </h3>
+            <p className="text-xs text-base-content/70">
+              Get the freshest reviews and curated game deals delivered weekly.
+            </p>
+            <form onSubmit={handleSubscribe} className="space-y-2">
+              <div className="relative">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="gamer@domain.com"
+                  required
+                  className="w-full pl-9 pr-3 py-2 text-sm bg-base-200 border border-base-content/15 rounded-xl focus:outline-none focus:border-primary text-base-content"
+                />
+                <FaEnvelope className="absolute left-3 top-3 text-base-content/40 text-xs" />
+              </div>
+              <button
+                type="submit"
+                className="w-full btn btn-primary btn-sm text-white font-semibold rounded-xl"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
-      </nav>
-      <aside>
-        <p>
-          Copyright © {new Date().getFullYear()} - All right reserved by ACME
-          Industries Ltd
-        </p>
-      </aside>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-base-content/10 bg-base-200/50 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-base-content/60">
+          <p>© {new Date().getFullYear()} Game Reviews Portal. All rights reserved.</p>
+          <div className="flex items-center gap-1">
+            <span>Built with passion for gamers worldwide</span>
+            <FaHeart className="text-accent inline ml-1" />
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };

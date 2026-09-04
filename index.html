@@ -5,14 +5,32 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="./src/assets/fab.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Game Review</title>
+  <title>Game Reviews - The Ultimate Gamer's Hub & Honest Ratings</title>
+
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Immediate Theme Initialization to Prevent FOUC -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('gameReviewTheme');
+      const theme = savedTheme ? savedTheme : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
 </head>
 
-<body>
+<body class="font-sans antialiased">
   <div id="root"></div>
 
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
     (function () {
       emailjs.init({
@@ -20,8 +38,6 @@
       });
     })();
   </script>
-
-
 
   <script type="module" src="/src/main.jsx"></script>
 </body>

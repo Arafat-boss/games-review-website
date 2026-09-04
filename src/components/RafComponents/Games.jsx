@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { FaPlusCircle, FaCheckCircle, FaStar } from 'react-icons/fa';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { Navigation, Pagination } from 'swiper/modules';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FaStar, FaFire, FaGamepad } from "react-icons/fa";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Games = () => {
   const [games, setGames] = useState([]);
@@ -13,60 +14,114 @@ const Games = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get('https://game-review-server.vercel.app/reviews');
-        setGames(result.data);
+        const result = await axios.get(
+          "https://game-review-server.vercel.app/reviews"
+        );
+        if (result.data && Array.isArray(result.data)) {
+          setGames(result.data);
+        }
       } catch (err) {
-        console.log('Error fetching data:', err);
+        console.log("Error fetching games:", err);
       }
     };
     fetchData();
   }, []);
 
   return (
-    <div className="container mx-auto py-8">
-      <h2 className="text-2xl font-bold mb-4">Popular Games</h2>
-      <p className="text-gray-600 mb-6">Don't miss the most popular games on OpenCritic today</p>
-      <Swiper
-        navigation
-        pagination={{ clickable: true }}
-        spaceBetween={20}
-        breakpoints={{
-          640: {
-            slidesPerView: 1, // Small screens will show 1 slide
-          },
-          768: {
-            slidesPerView: 2, // Medium screens will show 2 slides
-          },
-          1024: {
-            slidesPerView: 4, // Larger screens will show 4 slides
-          },
-          1280: {
-            slidesPerView: 7, // Extra-large screens will show 7 slides
-          },
-        }}
-        modules={[Navigation, Pagination]}
-        className="h-64"
-      >
-        {games.map((game) => (
-          <SwiperSlide key={game._id}>
-            <div className="card bg-base-100 h-full">
-              <figure className="relative h-3/4">
-                <img src={game.photo} alt={game.title} className="rounded-t-lg object-cover h-full w-full" />
-                <div className="absolute top-2 left-2 flex flex-col gap-2">
-                  <FaPlusCircle className="text-white text-xl" />
-                  <FaCheckCircle className="text-green-500 text-xl" />
-                  <FaStar className="text-yellow-400 text-xl" />
-                </div>
-              </figure>
-              <div className="card-body h-1/4 flex flex-col justify-between">
-                <h3 className="card-title text-xl font-semibold">{game.title}</h3>
-                <div className={`badge badge-${game.genres} text-lg`}>{game.rating}</div>
-              </div>
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 gap-3">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold uppercase tracking-wider mb-2">
+              <FaFire />
+              Trending Now
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+            <h2 className="font-display font-black text-3xl sm:text-4xl text-base-content tracking-tight">
+              Community Popular Picks
+            </h2>
+            <p className="text-sm sm:text-base text-base-content/70 mt-1">
+              Swipe through trending games evaluated by fellow players.
+            </p>
+          </div>
+
+          <Link
+            to="/allReview"
+            className="btn btn-outline btn-sm border-base-content/20 hover:bg-primary hover:border-primary hover:text-white rounded-xl"
+          >
+            All Game Database
+          </Link>
+        </div>
+
+        {games.length > 0 ? (
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 3500, disableOnInteraction: false }}
+            spaceBetween={20}
+            breakpoints={{
+              320: { slidesPerView: 1.2 },
+              640: { slidesPerView: 2.2 },
+              1024: { slidesPerView: 3.5 },
+              1280: { slidesPerView: 4.2 },
+            }}
+            className="pb-12"
+          >
+            {games.map((game) => (
+              <SwiperSlide key={game._id}>
+                <Link
+                  to={`/reviewDetails/${game._id}`}
+                  className="group block bg-base-100 border border-base-content/10 hover:border-primary/40 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="relative h-48 w-full overflow-hidden bg-slate-900">
+                    <img
+                      src={
+                        game.photo ||
+                        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80"
+                      }
+                      alt={game.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src =
+                          "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80";
+                      }}
+                    />
+                    {/* Dark Vignette Overlay - Never white wash */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/30"></div>
+
+                    {/* Floating Rating Pill */}
+                    <div className="absolute top-2.5 right-2.5 flex items-center gap-1 px-2.5 py-1 rounded-xl bg-black/70 backdrop-blur-md border border-white/20 text-white font-bold text-xs shadow-md">
+                      <FaStar className="text-amber-400" />
+                      <span>{game.rating}/10</span>
+                    </div>
+
+                    <div className="absolute bottom-2.5 left-2.5">
+                      <span className="px-2 py-0.5 rounded-md bg-primary text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">
+                        {game.genres || "Action"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-base-100">
+                    <h3 className="font-display font-bold text-base text-base-content group-hover:text-primary transition-colors line-clamp-1">
+                      {game.title}
+                    </h3>
+                    <p className="text-xs text-base-content/70 mt-1 line-clamp-1 font-medium">
+                      Published by {game.name || "Gamer"}
+                    </p>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <div className="text-center py-8 text-sm text-base-content/60">
+            Loading trending titles...
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 

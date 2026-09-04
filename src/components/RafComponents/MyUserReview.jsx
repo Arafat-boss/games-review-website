@@ -1,22 +1,17 @@
-import React, { useState } from "react";
-import { CiEdit } from "react-icons/ci";
-import { FaStar } from "react-icons/fa";
-import { TiDelete } from "react-icons/ti";
+import React from "react";
+import { FaEdit, FaTrashAlt, FaStar, FaCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const MyUserReview = ({ findUser, deleteUser, setDeleteUser }) => {
-  // const [remaining, setRemaining] = useState(findUser)
-
   const handleDelete = (id) => {
-    console.log(id);
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Delete this review?",
+      text: "This action cannot be undone!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#ef4444",
+      cancelButtonColor: "#6b7280",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -25,57 +20,92 @@ const MyUserReview = ({ findUser, deleteUser, setDeleteUser }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "Your game review has been removed.",
                 icon: "success",
+                confirmButtonColor: "#8b5cf6",
               });
-              //update the loaded coffee state
-              const remainingCards = deleteUser.filter(
-                (card) => card._id !== id
+              const remainingReviews = deleteUser.filter(
+                (item) => item._id !== id
               );
-              setDeleteUser(remainingCards);
+              setDeleteUser(remainingReviews);
             }
+          })
+          .catch((err) => {
+            console.error("Failed to delete review:", err);
+            Swal.fire({
+              title: "Error!",
+              text: "Could not delete the review. Please try again.",
+              icon: "error",
+            });
           });
       }
     });
   };
 
-
   return (
-    <div className="w-11/12 mx-auto">
-      <div className="lg:flex mb:flex mb-3 justify-between bg-base-100 border rounded-lg p-4">
-        {/* Content Section */}
-        <div className="">
-          {/* Title */}
-          <h2 className="card-title text-3xl font-bold">{findUser.title}</h2>
+    <div className="bg-base-100 border border-base-content/10 hover:border-primary/40 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        {/* Left Side: Thumbnail & Content */}
+        <div className="flex items-start gap-4 flex-1">
+          {findUser.photo && (
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-base-300 shrink-0">
+              <img
+                src={findUser.photo}
+                alt={findUser.title}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src =
+                    "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=200&auto=format&fit=crop&q=80";
+                }}
+              />
+            </div>
+          )}
 
-          {/* Description */}
-          <p className="text-gray-600">{findUser.description}</p>
-          <span className="text-sm text-gray-400">
-            published date of {findUser.date}
-          </span>
-          {/* Rating */}
-          <div className="flex items-center mt-4">
-            <div className="flex items-center bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full">
-              <FaStar className="text-yellow-500 mr-2" />
-              <span className="font-bold">{findUser.rating}/10</span>
+          <div className="space-y-1.5 flex-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="badge badge-primary badge-outline text-[11px] font-bold">
+                {findUser.genres || "Action"}
+              </span>
+              <div className="inline-flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded-md">
+                <FaStar className="text-amber-400 text-xs" />
+                <span>{findUser.rating}/10</span>
+              </div>
+            </div>
+
+            <h3 className="font-display font-bold text-xl text-base-content line-clamp-1">
+              {findUser.title}
+            </h3>
+
+            <p className="text-xs sm:text-sm text-base-content/70 line-clamp-2 leading-relaxed">
+              {findUser.description}
+            </p>
+
+            <div className="flex items-center gap-1.5 text-xs text-base-content/50 pt-1">
+              <FaCalendarAlt className="text-primary text-[10px]" />
+              <span>Published on {findUser.date || "2024"}</span>
             </div>
           </div>
         </div>
-        <div className="mt-6">
-        <Link to={`/updateReview/${findUser._id}`}>
-            <button className="btn mb-7">
-              <CiEdit size={30} className="text-blue-400"></CiEdit>Update
-            </button>
+
+        {/* Right Side: Action Buttons */}
+        <div className="flex sm:flex-col items-center gap-2.5 self-end sm:self-center w-full sm:w-auto justify-end">
+          <Link
+            to={`/updateReview/${findUser._id}`}
+            className="btn btn-outline btn-sm rounded-xl flex items-center gap-1.5 text-xs font-bold border-base-content/20 hover:bg-primary hover:border-primary hover:text-white flex-1 sm:flex-initial"
+          >
+            <FaEdit className="text-primary" />
+            <span>Edit</span>
           </Link>
           <button
             onClick={() => handleDelete(findUser._id)}
-            className="btn ml-2"
+            className="btn btn-outline btn-error btn-sm rounded-xl flex items-center gap-1.5 text-xs font-bold flex-1 sm:flex-initial"
           >
-            <TiDelete size={30} className="text-red-500"></TiDelete> Delete
+            <FaTrashAlt />
+            <span>Delete</span>
           </button>
         </div>
       </div>

@@ -1,208 +1,223 @@
-// import React, { useState } from "react";
-// import { useLoaderData } from "react-router-dom";
-// import Card from "../RafComponents/Card";
-// import Lottie from "lottie-react";
-// import animationData from "../../animation/animation.json";
-// import { IoMdArrowDropdown } from "react-icons/io";
-// import { Helmet } from "react-helmet";
-
-// const AllReview = () => {
-//   const allReviewData = useLoaderData(); // Original data
-//   const [sortedData, setSortedData] = useState(allReviewData);
-
-//   const [sortOrder, setSortOrder] = useState("desc"); // 'asc' or 'desc'
-
-//   // Sorting Handler
-//   const handleSort = (criterion) => {
-//     const sorted = [...allReviewData].sort((a, b) => {
-//       if (criterion === "rating") {
-//         return sortOrder === "asc" ? a.rating - b.rating : b.rating - a.rating;
-//       } else if (criterion === "date") {
-//         return sortOrder === "asc"
-//           ? new Date(a.date) - new Date(b.date)
-//           : new Date(b.date) - new Date(a.date);
-//       }
-//       return 0;
-//     });
-//     setSortedData(sorted);
-//   };
-
-//   return (
-//     <>
-//       <Helmet>
-//         <title>All Reviews</title>
-//       </Helmet>
-//       <div className="text-center my-1 text-[#25000d]">
-//         <Lottie
-//           animationData={animationData}
-//           loop
-//           className="w-60 h-32 mx-auto"
-//         />
-//         <h2 className="text-3xl font-bold">
-//           Discover Every Game Review You Need!
-//         </h2>
-//       </div>
-
-//       {/* Dropdown Section */}
-//       <div className="w-11/12 mx-auto flex justify-between items-center gap-4 border-2 rounded-lg mt-5 text-[#25000d]">
-//         <h3 className="font-semibold pl-10">You can sort the review</h3>
-//         <div>
-//           <details className="dropdown mr-2 z-50">
-//             <summary className="btn btn-outline m-1">
-//               Filter
-//               <IoMdArrowDropdown />
-//             </summary>
-//             <ul className="menu dropdown-content bg-base-100 space-y-2 rounded-box shadow w-52">
-//               <li>
-//                 <button >Action</button>
-//               </li>
-//               <li>
-//                 <button >RPG</button>
-//               </li>
-//               <li>
-//                 <button >Adventure</button>
-//               </li>
-//             </ul>
-//           </details>
-//           <details className="dropdown mr-2 z-50">
-//             <summary className="btn btn-outline m-1">
-//               Sort by
-//               <IoMdArrowDropdown />
-//             </summary>
-//             <ul className="menu dropdown-content bg-base-100 space-y-2 rounded-box shadow w-52">
-//               <li>
-//                 <button onClick={() => handleSort("rating")}>Rating</button>
-//               </li>
-//               <li>
-//                 <button onClick={() => handleSort("date")}>Year</button>
-//               </li>
-//             </ul>
-//           </details>
-//         </div>
-//       </div>
-
-//       {/* Cards Section */}
-//       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 w-11/12 mx-auto mt-10">
-//         {sortedData.map((card) => (
-//           <Card key={card._id} card={card} />
-//         ))}
-//       </div>
-//     </>
-//   );
-// };
-
-// export default AllReview;
-
-
-
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Card from "../RafComponents/Card";
 import Lottie from "lottie-react";
 import animationData from "../../animation/animation.json";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { Helmet } from "react-helmet";
+import { FaSearch, FaFilter, FaSortAmountDown, FaGamepad, FaRedo } from "react-icons/fa";
+
+const genresList = [
+  "All Genres",
+  "Action",
+  "RPG",
+  "Adventure",
+  "Shooter",
+  "Strategy",
+  "Sports",
+  "Horror",
+];
 
 const AllReview = () => {
-  const allReviewData = useLoaderData(); 
-  const [filteredData, setFilteredData] = useState(allReviewData); // Filtered data state
-  const [sortOrder, setSortOrder] = useState("desc");
+  const allReviewData = useLoaderData();
+  const rawReviews = Array.isArray(allReviewData) ? allReviewData : [];
 
-  // Genre Filter Handler
-  const handleFilter = (genre) => {
-    console.log(genre);
-    const filtered = genre
-      ? allReviewData.filter((review) => review.genres === genre)
-      : allReviewData; // Reset if no genre is selected
-    setFilteredData(filtered);
-  };
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("All Genres");
+  const [sortBy, setSortBy] = useState("rating-desc"); // rating-desc, rating-asc, date-desc, date-asc
 
-  // Sorting Handler
-  const handleSort = (criterion) => {
-    const sorted = [...filteredData].sort((a, b) => {
-      if (criterion === "rating") {
-        return sortOrder === "asc" ? a.rating - b.rating : b.rating - a.rating;
-      } else if (criterion === "date") {
-        return sortOrder === "asc"
-          ? new Date(a.date) - new Date(b.date)
-          : new Date(b.date) - new Date(a.date);
+  // Memoized filter and sort
+  const filteredAndSortedReviews = useMemo(() => {
+    let result = [...rawReviews];
+
+    // 1. Search Filter (by title)
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase();
+      result = result.filter((item) =>
+        item.title?.toLowerCase().includes(term)
+      );
+    }
+
+    // 2. Genre Filter
+    if (selectedGenre !== "All Genres") {
+      result = result.filter(
+        (item) =>
+          item.genres?.toLowerCase() === selectedGenre.toLowerCase()
+      );
+    }
+
+    // 3. Sorting
+    result.sort((a, b) => {
+      const ratingA = parseFloat(a.rating) || 0;
+      const ratingB = parseFloat(b.rating) || 0;
+      const dateA = new Date(a.date || 0).getTime();
+      const dateB = new Date(b.date || 0).getTime();
+
+      switch (sortBy) {
+        case "rating-desc":
+          return ratingB - ratingA;
+        case "rating-asc":
+          return ratingA - ratingB;
+        case "date-desc":
+          return dateB - dateA;
+        case "date-asc":
+          return dateA - dateB;
+        default:
+          return 0;
       }
-      return 0;
     });
-    setFilteredData(sorted);
+
+    return result;
+  }, [rawReviews, searchTerm, selectedGenre, sortBy]);
+
+  const handleResetFilters = () => {
+    setSearchTerm("");
+    setSelectedGenre("All Genres");
+    setSortBy("rating-desc");
   };
 
   return (
-    <>
+    <div className="py-10">
       <Helmet>
-        <title>All Reviews</title>
+        <title>All Game Reviews | Complete Critique Library</title>
       </Helmet>
-      <div className="text-center my-1 text-[#25000d]">
-        <Lottie
-          animationData={animationData}
-          loop
-          className="w-60 h-32 mx-auto"
-        />
-        <h2 className="text-3xl font-bold">
-          Discover Every Game Review You Need!
-        </h2>
-      </div>
 
-      {/* Dropdown Section */}
-      <div className="w-11/12 mx-auto flex justify-between items-center gap-4 border-2 rounded-lg mt-5 text-[#25000d]">
-        <h3 className="font-semibold pl-10">You can sort the review</h3>
-        <div>
-          {/* Genre Filter */}
-          <details className="dropdown mr-2 z-50">
-            <summary className="btn btn-outline m-1">
-              Filter by Genre
-              <IoMdArrowDropdown />
-            </summary>
-            <ul className="menu dropdown-content bg-base-100 space-y-2 rounded-box shadow w-52">
-              <li>
-                <button onClick={() => handleFilter("")}>All Genres</button>
-              </li>
-              <li>
-                <button onClick={() => handleFilter("Action")}>Action</button>
-              </li>
-              <li>
-                <button onClick={() => handleFilter("RPG")}>RPG</button>
-              </li>
-              <li>
-                <button onClick={() => handleFilter("Adventure")}>
-                  Adventure
-                </button>
-              </li>
-            </ul>
-          </details>
-
-          {/* Sorting Options */}
-          <details className="dropdown mr-2 z-50">
-            <summary className="btn btn-outline m-1">
-              Sort by
-              <IoMdArrowDropdown />
-            </summary>
-            <ul className="menu dropdown-content bg-base-100 space-y-2 rounded-box shadow w-52">
-              <li>
-                <button onClick={() => handleSort("rating")}>Rating</button>
-              </li>
-              <li>
-                <button onClick={() => handleSort("date")}>Year</button>
-              </li>
-            </ul>
-          </details>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Page Banner & Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <Lottie
+            animationData={animationData}
+            loop
+            className="w-48 h-28 mx-auto"
+          />
+          <h1 className="font-display font-black text-3xl sm:text-5xl text-base-content tracking-tight">
+            Discover Every Game Review
+          </h1>
+          <p className="text-sm sm:text-base text-base-content/70 mt-2">
+            Explore community critiques, filter by your favorite genre, or search any title in our database.
+          </p>
         </div>
-      </div>
 
-      {/* Cards Section */}
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5 w-11/12 mx-auto mt-10">
-        {filteredData.map((card) => (
-          <Card key={card._id} card={card} />
-        ))}
+        {/* Filter, Search & Controls Bar */}
+        <div className="bg-base-100 border border-base-content/10 rounded-2xl p-4 sm:p-6 shadow-sm mb-10 space-y-4">
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+            {/* Search Input */}
+            <div className="relative flex-1">
+              <FaSearch className="absolute left-4 top-3.5 text-base-content/40" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search games by title (e.g. Cyberpunk, Elden Ring)..."
+                className="w-full pl-11 pr-4 py-2.5 bg-base-200 border border-base-content/15 rounded-xl text-sm focus:outline-none focus:border-primary text-base-content"
+              />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm("")}
+                  className="absolute right-3 top-2.5 text-xs text-base-content/50 hover:text-base-content px-2 py-1 bg-base-300 rounded-md"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 text-xs font-bold text-base-content/70 uppercase whitespace-nowrap">
+                <FaSortAmountDown className="text-primary" />
+                <span>Sort By:</span>
+              </div>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="select select-bordered select-sm bg-base-200 rounded-xl text-xs font-semibold focus:border-primary text-base-content"
+              >
+                <option value="rating-desc">Rating: Highest First</option>
+                <option value="rating-asc">Rating: Lowest First</option>
+                <option value="date-desc">Release: Newest First</option>
+                <option value="date-asc">Release: Oldest First</option>
+              </select>
+
+              {(searchTerm || selectedGenre !== "All Genres") && (
+                <button
+                  onClick={handleResetFilters}
+                  className="btn btn-ghost btn-sm text-xs flex items-center gap-1 text-base-content/70 hover:text-primary"
+                  title="Reset all filters"
+                >
+                  <FaRedo className="text-xs" />
+                  <span>Reset</span>
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Genre Filter Chips */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-2 scrollbar-none">
+            <span className="text-xs font-bold text-base-content/60 uppercase tracking-wider mr-1 flex items-center gap-1">
+              <FaFilter className="text-xs text-primary" /> Genres:
+            </span>
+            {genresList.map((genre) => (
+              <button
+                key={genre}
+                onClick={() => setSelectedGenre(genre)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                  selectedGenre === genre
+                    ? "bg-primary text-white shadow-md shadow-primary/30"
+                    : "bg-base-200 hover:bg-base-300 text-base-content/80 border border-base-content/10"
+                }`}
+              >
+                {genre}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Results Counter */}
+        <div className="flex items-center justify-between mb-6 text-xs text-base-content/70 font-semibold px-1">
+          <span>
+            Showing{" "}
+            <strong className="text-primary">
+              {filteredAndSortedReviews.length}
+            </strong>{" "}
+            of {rawReviews.length} Reviews
+          </span>
+          {selectedGenre !== "All Genres" && (
+            <span className="badge badge-primary badge-outline text-[11px]">
+              Filtered by: {selectedGenre}
+            </span>
+          )}
+        </div>
+
+        {/* Cards Grid */}
+        {filteredAndSortedReviews.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredAndSortedReviews.map((card) => (
+              <Card key={card._id} card={card} />
+            ))}
+          </div>
+        ) : (
+          /* Empty Search State */
+          <div className="text-center py-20 bg-base-100 rounded-3xl border border-base-content/10 p-8">
+            <div className="w-16 h-16 rounded-2xl bg-base-200 border border-base-content/10 flex items-center justify-center mx-auto mb-4 text-2xl text-primary">
+              <FaGamepad />
+            </div>
+            <h3 className="font-display font-bold text-2xl text-base-content">
+              No matching game reviews
+            </h3>
+            <p className="text-sm text-base-content/60 max-w-md mx-auto mt-2 mb-6">
+              We couldn't find any reviews matching "{searchTerm}" in the{" "}
+              {selectedGenre} category.
+            </p>
+            <button
+              onClick={handleResetFilters}
+              className="btn btn-primary btn-sm text-white font-bold rounded-xl"
+            >
+              Clear All Filters
+            </button>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
 export default AllReview;
-

@@ -1,33 +1,40 @@
 import React from "react";
-import Navbar from "../RafComponents/Navbar";
 import Slider from "../RafComponents/Slider";
 import Cards from "../RafComponents/Cards";
 import MiniDetailes from "../RafComponents/MiniDetailes";
 import About from "../RafComponents/About";
-import { Helmet } from "react-helmet";
 import Games from "../RafComponents/Games";
+import UpcomingGames from "../RafComponents/UpcomingGames";
+import GamingNews from "../RafComponents/GamingNews";
+import { Helmet } from "react-helmet";
 
 const HomePage = () => {
   return (
-    <div className="">
+    <div className="space-y-4">
       <Helmet>
-        <title>Home</title>
-    </Helmet>
-      <section>
-        <Slider></Slider>
-      </section>
-      <section>
-        <About></About>
-      </section>
-      <main className="w-11/12 mx-auto">
-        <Cards></Cards>
-        <section >
-          <MiniDetailes></MiniDetailes>
-        </section>
-        <section>
-          <Games></Games>
-        </section>
-      </main>
+        <title>Game Reviews | The Ultimate Gamer's Critique Hub</title>
+      </Helmet>
+
+      {/* Hero Showcase Slider */}
+      <Slider />
+
+      {/* Highest Rated Community Reviews (Live Database) */}
+      <Cards />
+
+      {/* Editor's Spotlight In-Depth Breakdowns (Pros & Cons) */}
+      <MiniDetailes />
+
+      {/* Upcoming Games & Release Radar */}
+      <UpcomingGames />
+
+      {/* Popular Trending Games Swiper */}
+      <Games />
+
+      {/* Industry News & Tech Dispatches */}
+      <GamingNews />
+
+      {/* Platform Features, Trust Badges & Stats Counter */}
+      <About />
     </div>
   );
 };

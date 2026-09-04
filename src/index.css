@@ -1,3 +1,108 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom Gaming Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--b2, 220 18% 10%));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--p, 260 84% 65%));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--a, 345 90% 60%));
+}
+
+/* Glassmorphism & Cyber Card Utilities */
+.glass-panel {
+  background: rgba(var(--b1), 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gamer-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gamer-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Gaming Gradient Accents */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f43f5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-gamer {
+  background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+}
+
+.bg-gradient-cyber {
+  background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+}
+
+/* Swiper Controls Customization */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ffffff !important;
+  background: rgba(0, 0, 0, 0.6);
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50%;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: #8b5cf6 !important;
+  transform: scale(1.1);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
+.swiper-pagination-bullet {
+  background: #a855f7 !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background: #f43f5e !important;
+  opacity: 1;
+  width: 24px !important;
+  border-radius: 6px !important;
+}
