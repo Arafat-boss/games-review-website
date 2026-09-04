@@ -4,9 +4,9 @@ import Footer from "../RafComponents/Footer";
 
 const MainLayout = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-base-200 text-base-content transition-colors duration-200">
+    <div className="flex flex-col min-h-screen w-full max-w-full overflow-x-hidden bg-base-200 text-base-content transition-colors duration-200">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow w-full max-w-full overflow-x-hidden">
         <Outlet />
       </main>
       <Footer />

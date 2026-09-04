@@ -150,38 +150,38 @@ const ReviewDetails = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20"></div>
 
           {/* Floating Category & Date */}
-          <div className="absolute top-6 left-6 flex flex-wrap gap-2">
-            <span className="px-3.5 py-1.5 rounded-xl bg-primary text-white text-xs font-bold uppercase tracking-wider shadow-lg">
+          <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex flex-wrap gap-2">
+            <span className="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-primary text-white text-xs font-bold uppercase tracking-wider shadow-lg">
               {genres || "Action"}
             </span>
-            <span className="px-3.5 py-1.5 rounded-xl bg-black/70 backdrop-blur-md border border-white/20 text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg">
+            <span className="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-black/70 backdrop-blur-md border border-white/20 text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg">
               <FaCalendarAlt className="text-primary text-xs" />
               Released: {date || "2024"}
             </span>
           </div>
 
           {/* Floating Score Gauge on dark backdrop */}
-          <div className="absolute bottom-6 right-6 flex items-center gap-3 bg-black/75 backdrop-blur-md border border-white/25 rounded-2xl p-3 sm:p-4 shadow-2xl text-white">
+          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 flex items-center gap-2 sm:gap-3 bg-black/75 backdrop-blur-md border border-white/25 rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shadow-2xl text-white">
             <div className="flex flex-col text-right">
-              <span className="text-[10px] uppercase font-bold text-gray-300 tracking-wider">
+              <span className="text-[9px] sm:text-[10px] uppercase font-bold text-gray-300 tracking-wider">
                 Critic Score
               </span>
-              <span className={`text-sm font-black uppercase ${verdict.color}`}>
+              <span className={`text-xs sm:text-sm font-black uppercase ${verdict.color}`}>
                 {verdict.label}
               </span>
             </div>
-            <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-tr from-primary to-accent text-white font-display font-black text-2xl shadow-lg">
+            <div className="flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-tr from-primary to-accent text-white font-display font-black text-xl sm:text-2xl shadow-lg">
               {rating}
             </div>
           </div>
         </div>
 
         {/* Article Body Section */}
-        <div className="p-6 sm:p-10 lg:p-12 space-y-8 bg-base-100">
+        <div className="p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 bg-base-100">
           {/* Game Title & Reviewer Bar */}
           <div className="border-b border-base-content/10 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <h1 className="font-display font-black text-3xl sm:text-5xl text-base-content tracking-tight">
+              <h1 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-base-content tracking-tight break-words">
                 {title}
               </h1>
               <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-base-content/70">

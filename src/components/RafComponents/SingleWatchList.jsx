@@ -46,7 +46,7 @@ const SingleWatchList = ({ wList, index }) => {
             </div>
           </div>
           <div>
-            <div className="font-display font-bold text-base text-base-content line-clamp-1">
+            <div className="font-display font-bold text-sm sm:text-base text-base-content max-w-[130px] sm:max-w-xs truncate">
               {gameTitle}
             </div>
             <div className="text-xs text-base-content/60 flex items-center gap-1.5 mt-0.5">

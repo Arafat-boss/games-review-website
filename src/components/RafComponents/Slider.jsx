@@ -54,7 +54,7 @@ const slidesData = [
 
 const Slider = () => {
   return (
-    <div className="relative w-full h-[540px] lg:h-[620px] overflow-hidden bg-slate-950">
+    <div className="relative w-full max-w-full h-[490px] sm:h-[550px] lg:h-[620px] overflow-hidden bg-slate-950">
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         effect="fade"
@@ -78,48 +78,48 @@ const Slider = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
 
             {/* Content Container */}
-            <div className="absolute inset-0 max-w-7xl mx-auto px-6 sm:px-12 flex flex-col justify-end pb-16 lg:pb-20">
-              <div className="max-w-2xl space-y-4">
+            <div className="absolute inset-0 max-w-7xl mx-auto px-4 sm:px-10 lg:px-12 flex flex-col justify-end pb-12 sm:pb-16 lg:pb-20">
+              <div className="max-w-2xl space-y-3 sm:space-y-4">
                 {/* Badge & Score */}
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/30 text-purple-300 border border-primary/40 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-primary/30 text-purple-300 border border-primary/40 text-[11px] sm:text-xs font-bold uppercase tracking-wider backdrop-blur-md">
                     <FaFire className="text-rose-400" />
                     {slide.badge}
                   </span>
 
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/25 text-emerald-300 border border-emerald-500/40 text-xs font-extrabold backdrop-blur-md">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-emerald-500/25 text-emerald-300 border border-emerald-500/40 text-[11px] sm:text-xs font-extrabold backdrop-blur-md">
                     <FaStar className="text-amber-400" />
                     <span>SCORE {slide.score} / 10</span>
                   </div>
                 </div>
 
                 {/* Game Title - Always crisp white on dark scrim */}
-                <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight drop-shadow-lg">
+                <h1 className="font-display font-extrabold text-2xl sm:text-4xl lg:text-6xl text-white tracking-tight leading-tight drop-shadow-lg break-words line-clamp-2">
                   {slide.title}
                 </h1>
 
                 {/* Description */}
-                <p className="text-sm sm:text-base text-gray-200 line-clamp-2 max-w-xl leading-relaxed drop-shadow">
+                <p className="text-xs sm:text-base text-gray-200 line-clamp-2 max-w-xl leading-relaxed drop-shadow">
                   {slide.desc}
                 </p>
 
                 {/* Platforms & Actions */}
-                <div className="flex flex-wrap items-center gap-4 pt-2">
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 pt-1 sm:pt-2">
                   <Link
                     to="/allReview"
-                    className="btn btn-primary btn-md text-white font-bold px-6 rounded-xl shadow-lg hover:shadow-glow-primary transition-all flex items-center gap-2"
+                    className="btn btn-primary btn-sm sm:btn-md text-white font-bold px-4 sm:px-6 rounded-xl shadow-lg hover:shadow-glow-primary transition-all flex items-center gap-2"
                   >
-                    <FaGamepad className="text-lg" />
+                    <FaGamepad className="text-base sm:text-lg" />
                     <span>Explore Reviews</span>
                   </Link>
                   <Link
                     to="/allReview"
-                    className="btn btn-outline btn-md text-white border-white/40 hover:bg-white/20 hover:border-white rounded-xl backdrop-blur-md transition-all font-semibold"
+                    className="btn btn-outline btn-sm sm:btn-md text-white border-white/40 hover:bg-white/20 hover:border-white rounded-xl backdrop-blur-md transition-all font-semibold px-3.5 sm:px-5"
                   >
                     Browse All Games
                   </Link>
 
-                  <div className="hidden sm:flex items-center gap-2 ml-auto text-xs text-gray-300 font-medium">
+                  <div className="hidden md:flex items-center gap-1.5 ml-auto text-xs text-gray-300 font-medium">
                     <span className="text-gray-400">Platforms:</span>
                     {slide.platforms.map((p, i) => (
                       <span

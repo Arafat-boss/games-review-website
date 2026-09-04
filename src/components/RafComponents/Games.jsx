@@ -58,14 +58,15 @@ const Games = () => {
             navigation
             pagination={{ clickable: true }}
             autoplay={{ delay: 3500, disableOnInteraction: false }}
-            spaceBetween={20}
+            spaceBetween={16}
             breakpoints={{
-              320: { slidesPerView: 1.2 },
-              640: { slidesPerView: 2.2 },
-              1024: { slidesPerView: 3.5 },
-              1280: { slidesPerView: 4.2 },
+              320: { slidesPerView: 1.15, spaceBetween: 12 },
+              480: { slidesPerView: 1.4, spaceBetween: 14 },
+              640: { slidesPerView: 2.2, spaceBetween: 16 },
+              1024: { slidesPerView: 3.2, spaceBetween: 20 },
+              1280: { slidesPerView: 4.2, spaceBetween: 20 },
             }}
-            className="pb-12"
+            className="pb-12 w-full max-w-full overflow-hidden"
           >
             {games.map((game) => (
               <SwiperSlide key={game._id}>
