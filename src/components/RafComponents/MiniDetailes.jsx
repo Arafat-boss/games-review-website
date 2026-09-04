@@ -72,16 +72,16 @@ const MiniDetailes = () => {
                 <div
                   className={`flex flex-col ${
                     index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
-                  } items-center`}
+                  } items-stretch`}
                 >
-                  {/* Image Container */}
-                  <div className="w-full lg:w-1/2 h-72 lg:h-96 relative overflow-hidden bg-slate-950">
+                  {/* Image Container - Stretches 100% height and width of its half with zero gaps */}
+                  <div className="w-full lg:w-1/2 min-h-[300px] sm:min-h-[360px] lg:min-h-full relative overflow-hidden bg-slate-950 shrink-0">
                     <img
                       src={game.image}
                       alt={game.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover absolute inset-0 hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/30"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
 
                     {/* Floating Rating on Image - Dark backdrop for solid contrast */}
                     <div className="absolute bottom-4 left-4 flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-black/75 backdrop-blur-md border border-white/20 text-white shadow-xl">
@@ -102,7 +102,7 @@ const MiniDetailes = () => {
                   </div>
 
                   {/* Content Container */}
-                  <div className="w-full lg:w-1/2 p-6 sm:p-10 flex flex-col justify-between space-y-6 bg-base-100">
+                  <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6 bg-base-100 flex-grow">
                     <div>
                       <div className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">
                         {game.genre}
